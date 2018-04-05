@@ -20,7 +20,7 @@ public class Provider {
     }
 
     public void addClient() {
-        System.out.println("Choose Prepaid or com.epam.project1.mobileconnection.Corporation.Contract");
+        System.out.println("Choose Prepaid or Contract");
         switch (Utils.readData()) {
             case "Prepaid":
                 System.out.println("Choose InternetAccess or SimpleTariff");
@@ -75,10 +75,10 @@ public class Provider {
                         System.out.println("This type of tariff doesn't exist yet, try one more time!");
                 }
                 break;
-            case "com.epam.project1.mobileconnection.Corporation.Contract":
-                System.out.println("Choose com.epam.project1.mobileconnection.Corporation.FreeInternet or Conversational");
+            case "Contract":
+                System.out.println("FreeInternet or Conversational");
                 switch (Utils.readData()) {
-                    case "com.epam.project1.mobileconnection.Corporation.FreeInternet":
+                    case "FreeInternet":
                         System.out.println("Choose Cheap or Middle or High or Ultra");
                         switch (Utils.readData()) {
                             case "Cheap":
@@ -126,8 +126,8 @@ public class Provider {
                         break;
                     default:
                         System.out.println("This type of tariff doesn't exist yet, try one more time!");
-                        break;
                 }
+                break;
             default:
                 System.out.println("This type of tariff doesn't exist yet, try one more time!");
         }
@@ -151,10 +151,16 @@ public class Provider {
         });
     }
 
-    public void findAppropriateTariff(int packageOfServicePrice) {
+    public void findAppropriateTariff(int packageOfServicePrice, int amountOfInternet) {
         for (Tariff x : clients) {
-              if (x != null && x.packageOfServicePrice == packageOfServicePrice)
-                  System.out.println(x);
+              if (x instanceof FreeInternet) {
+                  if (((FreeInternet) x).getAmountOfInternet() == amountOfInternet && x.getPackageOfServicePrice() == packageOfServicePrice)
+                      System.out.println(x);
+              }
+              if (x instanceof InternetAccess){
+                  if (((InternetAccess) x).getAmountOfInternet() == amountOfInternet && x.getPackageOfServicePrice() == packageOfServicePrice)
+                      System.out.println(x);
+              }
         }
     }
 }

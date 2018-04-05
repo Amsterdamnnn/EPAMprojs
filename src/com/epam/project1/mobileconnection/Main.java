@@ -7,6 +7,6 @@ public class Main {
         Provider provider = new Provider();
         provider.addClient();
         System.out.println(provider.getCurrentAmountOfClietns());
-        provider.findAppropriateTariff(50);
+        provider.findAppropriateTariff(50, 2000);
     }
 }

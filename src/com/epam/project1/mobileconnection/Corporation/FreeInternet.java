@@ -25,20 +25,16 @@ public class FreeInternet extends Contract {
 
     FreeInternet(int subscriptionFee, String type) {
         super(subscriptionFee);
-        boolean flag = true;
         for (FreeInternet.TypeOfTariff x : FreeInternet.TypeOfTariff.values()) {
             if (x.name().equalsIgnoreCase(type)){
                 this.packageOfServicePrice = x.packageOfServicePrice;
                 this.amountOfInternet = x.amountOfInternet;
                 this.sms = x.sms;
                 this.minutesOnAnotherProviders = x.minutesOnAnotherProviders;
-                flag = false;
                 break;
             }
         }
-        if (flag)
-            System.out.println("This type of tariff doesn't exist yet, try one more time!");
-    }
+}
 
     public int getAmountOfInternet() {
         return amountOfInternet;
